@@ -1,0 +1,1343 @@
+/* src/components/simulations/Stations.css */
+
+/* ─── Main Station Container (Single Viewport Fit) ───────────────────────── */
+.station-wrap {
+  flex: 1;
+  min-height: 0;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 2px 6px 4px;
+  gap: 4px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ─── Station Header & Badges ───────────────────────────────────────────── */
+.station-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 12px;
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 4px;
+  min-height: 28px;
+}
+
+.station-title {
+  color: #fcd34d;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.05rem, 1.25vw, 1.25rem);
+  line-height: 1.2;
+  margin: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.station-desc {
+  margin: 0;
+  font-size: clamp(0.82rem, 0.9vw, 0.9rem);
+  color: #cbd5e1;
+  line-height: 1.25;
+  text-align: right;
+  flex: 1;
+  max-width: 65%;
+  white-space: normal;
+}
+
+.station-target-box {
+  background: rgba(245, 158, 11, 0.22);
+  border: 2px solid #f59e0b;
+  border-radius: 12px;
+  padding: 3px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.station-target-label {
+  font-family: var(--font-body);
+  font-size: clamp(0.8rem, 0.9vw, 0.9rem);
+  font-weight: 800;
+  color: #cbd5e1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.station-target-num {
+  color: #ffd54f;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.15rem, 1.5vw, 1.45rem);
+  line-height: 1;
+  text-shadow: 0 0 10px rgba(255, 213, 79, 0.5);
+}
+
+/* ─── 2-Column Responsive Grid ──────────────────────────────────────────── */
+.station-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(8px, 1.2vw, 14px);
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+  max-height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.station-col-left,
+.station-col-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(4px, 0.8vh, 8px);
+  width: 100%;
+  min-height: 0;
+  max-height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ─── Station A: Interactive Coin Supply Grid ────────────────────────────── */
+.coin-supply-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.coin-supply-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 3px 6px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.coin-btn {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  border-radius: 8px;
+  padding: 5px 8px;
+  min-height: 38px;
+  cursor: pointer;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  transition: var(--transition-fast, 0.18s ease);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.coin-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.18);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.45);
+}
+
+.coin-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.coin-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.coin-btn-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.coin-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.coin-label {
+  font-family: var(--font-display);
+  font-size: clamp(0.88rem, 1vw, 1rem);
+  font-weight: 900;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.coin-count-pill {
+  font-family: var(--font-display);
+  font-size: clamp(0.85rem, 0.95vw, 0.98rem);
+  font-weight: 900;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 2px 7px;
+  border-radius: var(--radius-pill, 9999px);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.coin-minus {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 8px;
+  background: rgba(239, 68, 68, 0.2);
+  border: 1.5px solid rgba(239, 68, 68, 0.55);
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast, 0.18s ease);
+  flex-shrink: 0;
+}
+
+.coin-minus:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.6);
+  border-color: rgba(239, 68, 68, 0.9);
+  color: #ffffff;
+}
+
+.coin-minus:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+/* ─── Running Calculation & Money Tray Bar ───────────────────────────────── */
+.running-ratio-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: rgba(12, 10, 32, 0.9);
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.running-ratio-text {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.15vw, 1.18rem);
+  font-weight: 900;
+  color: #fcd34d;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.running-ratio-text.exact {
+  color: #4ade80;
+  text-shadow: 0 0 10px rgba(74, 222, 128, 0.6);
+}
+
+.running-ratio-text.over {
+  color: #f87171;
+  text-shadow: 0 0 10px rgba(248, 113, 113, 0.6);
+}
+
+.money-tray-display {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(10, 8, 30, 0.75);
+  border: 2px dashed rgba(255, 255, 255, 0.28);
+  border-radius: 12px;
+  padding: 6px 10px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.tray-coins-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  align-items: center;
+}
+
+.tray-coin-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  border-radius: 14px;
+  padding: 3px 10px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.92rem;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* ─── Station B: Supermarket Scanner & Cart ─────────────────────────────── */
+.market-chips-pool {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.market-item-card {
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-size: clamp(0.88rem, 1vw, 1.02rem);
+  font-weight: 800;
+  cursor: pointer;
+  transition: var(--transition-fast, 0.18s ease);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  user-select: none;
+  background: rgba(30, 25, 75, 0.85);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.market-item-card:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: #fbbf24;
+  background: rgba(251, 191, 36, 0.22);
+}
+
+.market-item-card.in-cart {
+  border-color: #4ade80;
+  background: #166534;
+  color: #ffffff;
+  font-weight: 900;
+  box-shadow: 0 0 12px rgba(74, 222, 128, 0.4);
+}
+
+.market-receipt-box {
+  background: #ffffff;
+  color: #09090b;
+  border: 2px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.market-receipt-header {
+  text-align: center;
+  font-weight: 900;
+  border-bottom: 2px dashed #94a3b8;
+  padding-bottom: 3px;
+  font-size: 0.85rem;
+  color: #18181b;
+}
+
+.market-receipt-row {
+  display: flex;
+  justify-content: space-between;
+  color: #18181b;
+  font-weight: 700;
+}
+
+.market-receipt-total {
+  border-top: 2px dashed #94a3b8;
+  padding-top: 4px;
+  font-weight: 900;
+  font-size: 1rem;
+  color: #09090b;
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+/* ─── Station C: Live Change-Making Till & Step Ladder ───────────────────── */
+.till-drawer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.till-coin-btn {
+  padding: 6px 4px;
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: var(--transition-fast, 0.18s ease);
+  min-height: 42px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+}
+
+.till-coin-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.18);
+}
+
+.change-ladder-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: rgba(15, 12, 38, 0.9);
+  padding: 6px 12px;
+  border-radius: 12px;
+  border: 2px solid rgba(245, 158, 11, 0.55);
+  width: 100%;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+}
+
+.change-ladder-step {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+/* ─── Station D: Spot Error Station ─────────────────────────────────────── */
+.spot-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.spot-step-card {
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: var(--transition-fast, 0.18s ease);
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  background: rgba(30, 25, 70, 0.85);
+  color: #ffffff;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  gap: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.spot-step-card:hover:not(.selected-error) {
+  border-color: #fbbf24;
+  transform: translateY(-1px);
+  background: rgba(251, 191, 36, 0.2);
+}
+
+.spot-step-card.selected-error {
+  background: rgba(34, 197, 94, 0.35);
+  border-color: #4ade80;
+  box-shadow: 0 0 12px rgba(74, 222, 128, 0.45);
+}
+
+.spot-step-card.selected-correct-step {
+  border-color: #f87171;
+  background: rgba(239, 68, 68, 0.35);
+}
+
+/* ─── Guide / Help Cards ────────────────────────────────────────────────── */
+.station-guide-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px dashed rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  padding: 8px 14px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.station-guide-text {
+  font-family: var(--font-body);
+  font-size: clamp(0.92rem, 1.05vw, 1.05rem);
+  color: #f8fafc;
+  line-height: 1.45;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* ─── Success / Completion Panel ────────────────────────────────────────── */
+.station-success {
+  background: rgba(18, 16, 52, 0.96);
+  border: 2px solid rgba(34, 197, 94, 0.7);
+  border-radius: 14px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.station-success .success-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.station-success-msg {
+  font-family: var(--font-body);
+  font-size: clamp(0.92rem, 1.08vw, 1.08rem);
+  color: #ffffff;
+  line-height: 1.35;
+  font-weight: 800;
+  margin: 0;
+}
+
+.station-success-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: nowrap;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.station-success-actions button {
+  padding: 6px 16px;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  font-weight: 800;
+  min-height: 38px;
+  flex: 1 1 auto;
+}
+
+/* ─── Station Action Buttons Row ────────────────────────────────────────── */
+.station-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: auto;
+  width: 100%;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.station-actions button {
+  padding: 6px 14px;
+  min-height: 38px;
+  flex: 1 1 auto;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  font-weight: 800;
+  border-radius: 12px;
+}
+
+/* ─── Responsive Media Queries ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .station-wrap {
+    padding: 4px 6px;
+    gap: 4px;
+  }
+  .station-grid-2col,
+  .station-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    overflow-y: auto;
+  }
+  .station-actions button,
+  .station-success-actions button {
+    min-height: 34px;
+    padding: 4px 10px;
+    font-size: 0.86rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ReasonQuest Geometry Court Station Styles (TRD §6) - Zero-Scroll Viewport Fit
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.station-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.station-workbench,
+.station-sidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px;
+  border-radius: var(--radius-md, 14px);
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  gap: 8px;
+  min-height: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.rv-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.station-status-pill {
+  font-size: clamp(0.75rem, 0.82vw, 0.82rem);
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill, 999px);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.status-valid {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.status-invalid {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.rv-pair-letter-badge,
+.rv-evidence-badge {
+  font-size: clamp(0.75rem, 0.82vw, 0.82rem);
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill, 999px);
+  background: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  white-space: nowrap;
+}
+
+.station-canvas-container {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  max-height: clamp(130px, 22vh, 185px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(10, 15, 29, 0.6);
+  border-radius: var(--radius-sm, 8px);
+  padding: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.station-svg {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.station-controls-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(30, 41, 59, 0.6);
+  padding: 8px 10px;
+  border-radius: var(--radius-sm, 8px);
+  flex-shrink: 0;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.control-label {
+  font-size: clamp(0.8rem, 0.88vw, 0.88rem);
+  font-weight: 700;
+  color: #cbd5e1;
+}
+
+.stepper-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stepper-current-val {
+  font-size: clamp(0.95rem, 1.05vw, 1.05rem);
+  font-weight: 800;
+  color: var(--gold, #ffb300);
+  min-width: 48px;
+  text-align: center;
+}
+
+.control-slider {
+  flex: 1;
+  accent-color: var(--gold, #ffb300);
+  cursor: pointer;
+  height: 6px;
+}
+
+.btn-toggle-group {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-toggle {
+  flex: 1;
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: clamp(0.82rem, 0.9vw, 0.9rem);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.btn-toggle.active {
+  background: var(--gold, #ffb300);
+  color: #18181b;
+  border-color: var(--gold, #ffb300);
+  font-weight: 800;
+}
+
+/* ── Rulebook Stack (Station A) ── */
+.sidebar-title {
+  margin: 0;
+  font-size: clamp(1rem, 1.12vw, 1.12rem);
+  font-weight: 800;
+  color: #ffd54f;
+  flex-shrink: 0;
+}
+
+.sidebar-subtitle {
+  margin: 0;
+  font-size: clamp(0.78rem, 0.85vw, 0.85rem);
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.rule-cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-height: 0;
+}
+
+.rule-card {
+  padding: 6px 10px;
+  border-radius: var(--radius-sm, 8px);
+  border-left: 3px solid transparent;
+  background: rgba(30, 41, 59, 0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rule-active {
+  border-left-color: #22c55e;
+}
+
+.rule-broken {
+  border-left-color: #ef4444;
+  opacity: 0.9;
+}
+
+.rule-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rule-name {
+  font-size: clamp(0.82rem, 0.9vw, 0.9rem);
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.rule-status-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #94a3b8;
+}
+
+.rule-active .rule-status-badge {
+  color: #4ade80;
+}
+
+.rule-broken .rule-status-badge {
+  color: #f87171;
+}
+
+.rule-detail {
+  margin: 0;
+  font-size: clamp(0.78rem, 0.85vw, 0.85rem);
+  color: #cbd5e1;
+}
+
+.rule-error-msg {
+  font-size: 0.72rem;
+  color: #fca5a5;
+  font-weight: 600;
+}
+
+/* When confirmation appears: collapse 3 cards into sleek 3-column status header */
+.rule-cards-stack.has-confirmation {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+  flex-shrink: 0;
+  flex: initial;
+}
+
+.rule-cards-stack.has-confirmation .rule-card {
+  padding: 4px 6px;
+  gap: 1px;
+}
+
+.rule-cards-stack.has-confirmation .rule-name {
+  font-size: 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rule-cards-stack.has-confirmation .rule-detail,
+.rule-cards-stack.has-confirmation .rule-error-msg {
+  display: none;
+}
+
+.confirmation-card {
+  background: rgba(49, 46, 129, 0.35);
+  border: 1px solid rgba(129, 140, 248, 0.4);
+  border-radius: var(--radius-sm, 8px);
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-height: 0;
+}
+
+.confirmation-title {
+  margin: 0;
+  font-size: clamp(0.88rem, 0.98vw, 0.98rem);
+  color: #fcd34d;
+  font-weight: 800;
+}
+
+.confirmation-q {
+  margin: 0;
+  font-size: clamp(0.82rem, 0.9vw, 0.9rem);
+  color: #e2e8f0;
+  line-height: 1.3;
+}
+
+.confirmation-options {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.confirmation-opt-btn {
+  text-align: left;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f8fafc;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: clamp(0.8rem, 0.88vw, 0.88rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  line-height: 1.25;
+}
+
+.confirmation-opt-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.confirmation-opt-btn.opt-correct {
+  background: rgba(34, 197, 94, 0.3);
+  border-color: #22c55e;
+  color: #86efac;
+}
+
+.confirmation-opt-btn.opt-wrong {
+  background: rgba(239, 68, 68, 0.3);
+  border-color: #ef4444;
+  color: #fca5a5;
+}
+
+/* ── Station B: Prove It Parallel Elements ── */
+.station-case-prompt {
+  margin: 0;
+  font-size: clamp(0.82rem, 0.9vw, 0.9rem);
+  color: #e2e8f0;
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+
+.docket-status-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.docket-entry {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(30, 41, 59, 0.6);
+  padding: 6px 10px;
+  border-radius: 8px;
+  border-left: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.docket-entry.done {
+  border-left-color: #22c55e;
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.docket-icon {
+  font-size: 1.1rem;
+}
+
+.docket-entry strong {
+  font-size: clamp(0.82rem, 0.9vw, 0.9rem);
+  color: #f8fafc;
+}
+
+.docket-entry p {
+  margin: 0;
+  font-size: clamp(0.76rem, 0.84vw, 0.84rem);
+  color: #94a3b8;
+}
+
+.rulebook-explainer {
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.explainer-heading {
+  margin: 0;
+  font-size: clamp(0.82rem, 0.9vw, 0.9rem);
+  color: #ffd54f;
+  font-weight: 800;
+}
+
+.explainer-body {
+  margin: 0;
+  font-size: clamp(0.78rem, 0.86vw, 0.86rem);
+  color: #f1f5f9;
+  line-height: 1.3;
+}
+
+/* ── Full Hearing Docket Editor (Station C) ── */
+.docket-chain-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  min-height: 0;
+}
+
+.docket-step-card {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 5px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.docket-step-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.step-badge {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--gold, #ffb300);
+  color: #18181b;
+  font-size: 0.72rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-text-title {
+  flex: 1;
+  font-size: clamp(0.8rem, 0.88vw, 0.88rem);
+  font-weight: 700;
+  color: #f8fafc;
+  line-height: 1.25;
+}
+
+.step-reorder-btns {
+  display: flex;
+  gap: 3px;
+}
+
+.qr-order-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #f8fafc;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+}
+
+.qr-order-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.step-reason-selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.reason-label {
+  font-size: clamp(0.74rem, 0.82vw, 0.82rem);
+  color: #94a3b8;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.reason-select-dropdown {
+  flex: 1;
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #f8fafc;
+  border-radius: 6px;
+  padding: 3px 6px;
+  font-size: clamp(0.76rem, 0.84vw, 0.84rem);
+  font-weight: 600;
+}
+
+.audit-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.audit-feedback-msg {
+  font-size: clamp(0.78rem, 0.86vw, 0.86rem);
+  font-weight: 600;
+  margin: 0;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.msg-valid {
+  background: rgba(34, 197, 94, 0.2);
+  color: #86efac;
+}
+
+.msg-flawed {
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+}
+
+/* ── Objection Station (Station D) ── */
+.objection-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-height: 0;
+}
+
+.objection-step-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.objection-step-card:hover {
+  border-color: rgba(212, 175, 55, 0.5);
+  background: rgba(30, 41, 59, 0.95);
+}
+
+.objection-step-card.step-selected {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.15);
+}
+
+.objection-step-card.step-flawed-fixed {
+  border-color: #22c55e;
+  background: rgba(34, 197, 94, 0.15);
+}
+
+.objection-step-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.step-num-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.78rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.objection-claim {
+  font-size: clamp(0.85rem, 0.92vw, 0.92rem);
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.objection-reason {
+  font-size: clamp(0.76rem, 0.84vw, 0.84rem);
+  color: #94a3b8;
+}
+
+.objection-action-bar {
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.btn-danger {
+  background: #dc2626;
+  color: #ffffff;
+  border: none;
+  font-weight: 700;
+  border-radius: 8px;
+}
+
+.btn-danger:hover {
+  background: #b91c1c;
+}
+
+.sidebar-instruction-card {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  background: rgba(30, 41, 59, 0.6);
+  padding: 10px 12px;
+  border-radius: 8px;
+  border-left: 3px solid #38bdf8;
+}
+
+.sidebar-instruction-card p {
+  margin: 0;
+  font-size: clamp(0.82rem, 0.9vw, 0.9rem);
+  color: #e2e8f0;
+  line-height: 1.35;
+}
+
+.objection-ruling-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(220, 38, 38, 0.12);
+  border: 1.5px solid rgba(220, 38, 38, 0.4);
+  border-radius: 10px;
+  padding: 8px 10px;
+  flex: 1;
+  min-height: 0;
+}
+
+.objection-ruling-title {
+  margin: 0;
+  font-size: clamp(0.92rem, 1.02vw, 1.02rem);
+  color: #fca5a5;
+  font-weight: 800;
+}
+
+.objection-flaw-summary {
+  margin: 0;
+  font-size: clamp(0.8rem, 0.88vw, 0.88rem);
+  color: #f8fafc;
+  line-height: 1.3;
+}
+
+.correction-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.correction-opt-btn {
+  text-align: left;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f8fafc;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: clamp(0.8rem, 0.88vw, 0.88rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  line-height: 1.25;
+}
+
+.correction-opt-btn:hover {
+  background: rgba(40, 53, 76, 0.9);
+}
+
+.correction-opt-btn.opt-correct {
+  background: rgba(34, 197, 94, 0.25);
+  border-color: #22c55e;
+  color: #86efac;
+}
+
+.correction-opt-btn.opt-wrong {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: #ef4444;
+  color: #fca5a5;
+}
+
+/* ── Station Completion Success Card ── */
+.station-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+  padding: 10px 14px;
+  background: rgba(34, 197, 94, 0.15);
+  border: 1.5px solid rgba(34, 197, 94, 0.45);
+  border-radius: var(--radius-md, 14px);
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.success-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.success-title {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+  font-weight: 800;
+  color: #86efac;
+}
+
+.success-desc {
+  margin: 0;
+  font-size: clamp(0.8rem, 0.88vw, 0.88rem);
+  color: #dcfce7;
+  line-height: 1.25;
+}
+
+@media (max-width: 900px) {
+  .station-desc {
+    display: none;
+  }
+}

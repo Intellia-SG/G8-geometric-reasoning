@@ -1,0 +1,335 @@
+/* src/components/IntroScreen.css */
+
+.intro-wrap {
+  width: 100%;
+  height: 100%;
+  max-height: 100dvh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: clamp(10px, 1.8vh, 20px) clamp(16px, 2.5vw, 36px);
+  overflow: hidden; /* Guarantee single-frame zero-scroll layout */
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+}
+
+/* ── Top Header Block ── */
+.intro-header-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(4px, 0.6vh, 8px);
+}
+
+.intro-top-badge {
+  background: rgba(255, 179, 0, 0.15);
+  color: #ffd54f;
+  padding: 5px 18px;
+  border-radius: var(--radius-pill, 999px);
+  font-size: 0.95rem;
+  font-weight: 800;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 179, 0, 0.35);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.intro-title {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: clamp(2.4rem, 4.4vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.05;
+  margin: 0;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  letter-spacing: -0.02em;
+}
+
+.text-gold {
+  color: var(--gold, #ffb300);
+  text-shadow: 0 0 24px rgba(255, 179, 0, 0.45);
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.intro-subtitle {
+  color: #fcd34d;
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Mascot Judge Tally Card ── */
+.intro-mascot-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  max-width: 860px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.intro-mascot-circle {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, #ffd54f 0%, #ff9f43 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  border: 2.5px solid rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+  animation: floatMascot 3.5s ease-in-out infinite;
+}
+
+@keyframes floatMascot {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.intro-speech-bubble {
+  background: rgba(255, 255, 255, 0.96);
+  color: #0f172a;
+  padding: 12px 22px;
+  border-radius: 18px;
+  font-weight: 600;
+  position: relative;
+  font-size: 1.08rem;
+  line-height: 1.45;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  border: 1.5px solid rgba(212, 175, 55, 0.4);
+  flex: 1;
+  max-width: 780px;
+}
+
+.intro-speech-bubble::before {
+  content: '';
+  position: absolute;
+  left: -9px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 8px 10px 8px 0;
+  border-style: solid;
+  border-color: transparent rgba(255, 255, 255, 0.96) transparent transparent;
+}
+
+.intro-speech-bubble strong {
+  color: #854d0e;
+}
+
+/* ── Journey Card (Single Horizontal Row) ── */
+.journey-card {
+  background: rgba(26, 35, 58, 0.8);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 18px;
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  max-width: 960px;
+  width: 100%;
+  backdrop-filter: blur(14px);
+  box-sizing: border-box;
+}
+
+.journey-card-title {
+  color: var(--gold, #ffb300);
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-weight: 900;
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.journey-steps-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+
+.journey-step-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid transparent;
+  flex: 1;
+}
+
+.clickable-step {
+  cursor: pointer;
+}
+
+.clickable-step:hover {
+  background: rgba(255, 179, 0, 0.18);
+  border-color: rgba(255, 179, 0, 0.45);
+  transform: translateY(-2px);
+}
+
+.clickable-step:active {
+  transform: translateY(0);
+}
+
+.journey-icon-circle {
+  width: 38px;
+  height: 38px;
+  background: radial-gradient(circle, rgba(255, 179, 0, 0.35) 0%, rgba(30, 25, 75, 0.9) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  border: 1.5px solid rgba(255, 179, 0, 0.4);
+  flex-shrink: 0;
+}
+
+.journey-text-col {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.journey-item-title {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.journey-item-desc {
+  color: #d1d8e0;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.journey-arrow {
+  color: rgba(255, 179, 0, 0.45);
+  font-size: 1.25rem;
+  font-weight: bold;
+  user-select: none;
+}
+
+/* ── Actions Row ── */
+.intro-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.intro-cta-main {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.25rem;
+  font-weight: 900;
+  padding: 12px 40px;
+  border-radius: var(--radius-pill, 999px);
+  background: linear-gradient(180deg, #fbb03b 0%, #f59e0b 100%);
+  color: #18181b;
+  border: none;
+  box-shadow: 0 4px 18px rgba(245, 158, 11, 0.4);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.intro-cta-main:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(245, 158, 11, 0.55);
+  background: linear-gradient(180deg, #fcd34d 0%, #fbbf24 100%);
+}
+
+.intro-cta-resume {
+  font-size: 1.05rem;
+  padding: 10px 24px;
+  border-radius: var(--radius-pill, 999px);
+}
+
+/* ── Bottom Stat Chips ── */
+.intro-bottom-cards {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.bottom-card {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-pill, 999px);
+  padding: 6px 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  font-weight: 800;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.bottom-card-icon {
+  font-size: 1.25rem;
+}
+
+.bottom-card-text {
+  letter-spacing: 0.02em;
+}
+
+/* ── Responsive Safeguards for smaller laptops / heights ── */
+@media (max-height: 720px) {
+  .intro-wrap {
+    padding: 6px 16px;
+  }
+  .intro-title {
+    font-size: 2.3rem;
+  }
+  .intro-mascot-circle {
+    width: 50px;
+    height: 50px;
+    font-size: 1.8rem;
+  }
+  .intro-speech-bubble {
+    padding: 8px 16px;
+    font-size: 1rem;
+  }
+  .journey-card {
+    padding: 8px 14px;
+  }
+  .journey-icon-circle {
+    width: 32px;
+    height: 32px;
+    font-size: 1.15rem;
+  }
+  .intro-cta-main {
+    padding: 10px 32px;
+  }
+}
+
+@media (max-width: 860px) {
+  .journey-steps-row {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .journey-arrow {
+    display: none;
+  }
+  .journey-step-item {
+    flex: 0 0 calc(33.33% - 10px);
+  }
+}

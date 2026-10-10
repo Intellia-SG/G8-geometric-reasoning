@@ -1,0 +1,408 @@
+/* src/components/phases/ReflectPhase.css */
+
+.reflect-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(8px, 1.5vh, 16px) 16px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.reflect-card {
+  width: 94%;
+  max-width: 1020px;
+  padding: 16px 26px 18px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: rgba(13, 16, 38, 0.94);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  box-sizing: border-box;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  gap: 10px;
+}
+
+/* Top Center Neon Accent Bar */
+.reflect-card .card-accent-bar {
+  width: 44px;
+  height: 4px;
+  border-radius: 999px;
+  background: #00e699;
+  box-shadow: 0 0 10px rgba(0, 230, 153, 0.6);
+  margin: 0 auto 6px auto;
+  flex-shrink: 0;
+}
+
+/* Header Row: Title & Subtitle on left, Star score on right */
+.reflect-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2px;
+  width: 100%;
+}
+
+.reflect-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.reflect-title {
+  color: #2ee59d;
+  font-family: var(--font-display, sans-serif);
+  font-weight: 900;
+  font-size: clamp(1.25rem, 1.5vw, 1.5rem);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.reflect-subtitle {
+  color: #94a3b8;
+  font-family: var(--font-body, sans-serif);
+  font-size: clamp(0.8rem, 0.88vw, 0.88rem);
+  font-weight: 500;
+  margin: 0;
+}
+
+.reflect-stars-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(10, 13, 30, 0.85);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 4px 14px;
+  color: #ffffff;
+  font-family: var(--font-display, sans-serif);
+  font-weight: 800;
+  font-size: 0.88rem;
+  flex-shrink: 0;
+}
+
+.reflect-stars-badge .star-icon {
+  color: #fbbf24;
+  font-size: 1rem;
+}
+
+/* Quiz Section */
+.reflect-quiz-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.reflect-q-card {
+  background: rgba(18, 22, 50, 0.65);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-sizing: border-box;
+}
+
+.reflect-q-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.reflect-q-badge {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 2px 7px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #e2e8f0;
+  font-family: var(--font-display, sans-serif);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.reflect-q-text {
+  font-family: var(--font-display, sans-serif);
+  font-weight: 700;
+  font-size: clamp(0.85rem, 0.95vw, 0.95rem);
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.reflect-opt-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.reflect-opt-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 7px 10px;
+  color: #cbd5e1;
+  font-family: var(--font-body, sans-serif);
+  font-weight: 600;
+  font-size: clamp(0.78rem, 0.86vw, 0.86rem);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1.25;
+}
+
+.reflect-opt-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(0, 230, 153, 0.4);
+  color: #ffffff;
+}
+
+.reflect-opt-btn.selected {
+  border: 1.8px solid #00e699;
+  background: rgba(0, 230, 153, 0.15);
+  color: #86efac;
+  font-weight: 800;
+  box-shadow: 0 0 12px rgba(0, 230, 153, 0.25);
+}
+
+/* Journal Entry Card */
+.reflect-journal-card {
+  background: rgba(18, 22, 50, 0.65);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-sizing: border-box;
+}
+
+.reflect-journal-label {
+  color: #ffffff;
+  font-family: var(--font-display, sans-serif);
+  font-weight: 800;
+  font-size: clamp(0.85rem, 0.92vw, 0.92rem);
+}
+
+.reflect-textarea {
+  background: rgba(10, 13, 30, 0.7);
+  border: 1.5px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  padding: 8px 12px;
+  color: #ffffff;
+  font-family: var(--font-body, sans-serif);
+  font-size: 0.88rem;
+  outline: none;
+  resize: none;
+  transition: border-color 0.2s;
+}
+
+.reflect-textarea:focus {
+  border-color: #00e699;
+  box-shadow: 0 0 10px rgba(0, 230, 153, 0.25);
+}
+
+.quick-insert-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.quick-label {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-family: var(--font-display, sans-serif);
+  font-weight: 700;
+}
+
+.quick-insert-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  padding: 3px 10px;
+  color: #cbd5e1;
+  font-family: var(--font-display, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.quick-insert-btn:hover {
+  background: rgba(0, 230, 153, 0.15);
+  border-color: #00e699;
+  color: #86efac;
+}
+
+/* Actions Row */
+.reflect-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+  width: 100%;
+}
+
+.btn-submit-reflect {
+  background: linear-gradient(135deg, #00e699 0%, #059669 100%);
+  color: #022c22;
+  font-family: var(--font-display, sans-serif);
+  font-weight: 900;
+  font-size: 0.9rem;
+  border-radius: 999px;
+  padding: 8px 24px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 18px rgba(0, 230, 153, 0.35);
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.btn-submit-reflect:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(0, 230, 153, 0.5);
+  filter: brightness(1.1);
+}
+
+/* Trophy View */
+.trophy-view {
+  align-items: center;
+  text-align: center;
+}
+
+.trophy-hero-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin: 6px 0;
+}
+
+.trophy-icon {
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+.trophy-congrats {
+  font-family: var(--font-display, sans-serif);
+  font-weight: 900;
+  font-size: 1.25rem;
+  color: #ffffff;
+  margin: 0;
+}
+
+.trophy-desc {
+  font-family: var(--font-body, sans-serif);
+  font-size: 0.88rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.trophy-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+  max-width: 600px;
+  margin: 8px 0;
+}
+
+.trophy-stat-card {
+  background: rgba(18, 22, 50, 0.65);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.trophy-stat-card .stat-value {
+  font-family: var(--font-display, sans-serif);
+  font-weight: 900;
+  font-size: 1.3rem;
+  color: #00e699;
+}
+
+.trophy-stat-card .stat-label {
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  font-weight: 700;
+}
+
+.trophy-badges-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  margin: 4px 0;
+}
+
+.badges-label {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  font-weight: 700;
+  margin: 0;
+}
+
+.badge-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(18, 22, 50, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 4px 12px;
+}
+
+.badge-pill-icon {
+  font-size: 1.1rem;
+}
+
+.badge-pill-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.badge-pill-title {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.badge-pill-desc {
+  font-size: 0.68rem;
+  color: #94a3b8;
+}
+
+@media (max-width: 900px) {
+  .reflect-opt-row {
+    grid-template-columns: 1fr;
+  }
+}

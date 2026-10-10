@@ -1,0 +1,84 @@
+/* ════════════════════════════════════════════
+   ReasonQuest Design Tokens
+   Grade 8 · Geometric Reasoning ("The Geometry Court")
+   Visual Color Scheme Synchronized with G2-Money-Money Reference
+   ════════════════════════════════════════════ */
+
+:root {
+  /* ── Core palette matching G2-Money-Money reference ── */
+  --color-bg: #0a0a2e;
+  --color-surface: rgba(30, 30, 100, 0.7);
+  --color-primary: #ffc107;     /* vibrant gold — CTAs, active states */
+  --color-secondary: #7c5cbf;   /* rich purple — secondary elements */
+  --color-accent: #4caf50;      /* fresh green — correct answers / sustained */
+  --color-error: #ef5350;       /* bright coral red — objection / overruled */
+  --color-text: #ffffff;
+  --color-text-muted: rgba(255, 255, 255, 0.45);
+
+  /* ── Aliases matching G2-Money-Money reference ── */
+  --bg-dark:        #0a0a2e;
+  --bg-card:        rgba(30, 25, 75, 0.7);
+  --bg-card-solid:  #1a1a5e;
+  --purple-deep:    #2d1b69;
+  --purple-mid:     #4a2c8a;
+  --purple-light:   #7c5cbf;
+  --blue-deep:      #1a237e;
+  --blue-mid:       #283593;
+  --blue-bright:    #3f51b5;
+  --gold:           #ffb300;
+  --gold-light:     #ffd54f;
+  --gold-dark:      #f57f17;
+  --green:          #4caf50;
+  --green-light:    #81c784;
+  --green-dark:     #388e3c;
+  --red:            #ef5350;
+  --red-light:      #ef9a9a;
+  --coral:          #ff7043;
+  --white:          #ffffff;
+  --purple:         #7c5cbf;
+
+  /* ── Character & Mascot aliases ── */
+  --char-1: #ff7043;            /* Priyanka — coral */
+  --char-2: #38bdf8;            /* Syafiq — sky blue */
+  --mascot: #ffb300;            /* Judge Tally the Owl — gold */
+
+  /* ── Courtroom world accents (10 worlds — TRD §9) ── */
+  --world-0: #FFD700;   /* Know Your Facts — oak & gold */
+  --world-1: #FF9800;   /* Spot the Letter — warm amber */
+  --world-2: #EF5350;   /* One-Step Rulings — burgundy robe */
+  --world-3: #5C6BC0;   /* Chain of Evidence — steel chain */
+  --world-4: #26A69A;   /* The Helper Line — law-library teal */
+  --world-5: #AB47BC;   /* Does It Follow? — sketch-paper violet */
+  --world-6: #FFA726;   /* Order in the Court — docket amber */
+  --world-7: #FF7043;   /* Converse and Counterexample — objection coral */
+  --world-8: #4CAF50;   /* Congruent Evidence — ledger green */
+  --world-9: #7C5CBF;   /* The Grand Mock Trial — deep courtroom purple */
+
+  /* ── Typography matching G2-Money-Money reference ── */
+  --font-display: 'Fredoka', 'Quicksand', 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-body: 'Nunito', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-emoji: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+
+  /* ── Radii ── */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 30px;
+  --radius-pill: 999px;
+
+  /* ── Shadows & Glassmorphism ── */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.35);
+  --shadow-glow: 0 0 30px rgba(124, 92, 191, 0.3);
+  --shadow-glow-gold: 0 0 24px rgba(255, 179, 0, 0.35);
+  --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.4);
+  --shadow-button: 0 4px 15px rgba(255, 179, 0, 0.35);
+  --glass-border: 1px solid rgba(130, 110, 210, 0.22);
+
+  /* ── Transitions ── */
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.18s ease;
+  --transition-base: 0.3s ease;
+  --transition-spring: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}

@@ -1,0 +1,98 @@
+// src/config/worlds.config.js
+/**
+ * ReasonQuest Worlds Configuration (Grade 8 Geometric Reasoning)
+ * Populated from PRD §9 and TRD §4.1
+ */
+
+export const WORLDS = [
+  {
+    id: 0,
+    name: 'Know Your Facts',
+    emoji: '🗣️',
+    accent: 'var(--world-0)',
+    description: 'Match each angle fact, with its condition, to its reason',
+    conceptFocus: 'match-angle-facts-to-reasons',
+    boss: { name: 'The Forgetful Witness', emoji: '🗣️', reward: 'Rulebook Badge' },
+  },
+  {
+    id: 1,
+    name: 'Spot the Letter',
+    emoji: '🔤',
+    accent: 'var(--world-1)',
+    description: 'Identify corresponding, alternate, and co-interior pairs',
+    conceptFocus: 'identify-parallel-line-angle-pairs',
+    boss: { name: 'The Letter Lookalike', emoji: '🔤', reward: 'Letter Spotter Badge' },
+  },
+  {
+    id: 2,
+    name: 'One-Step Rulings',
+    emoji: '📎',
+    accent: 'var(--world-2)',
+    description: 'Find an angle in one step and name the reason',
+    conceptFocus: 'find-angle-one-step-with-reason',
+    boss: { name: 'The Hasty Clerk', emoji: '📎', reward: 'Ruling Badge' },
+  },
+  {
+    id: 3,
+    name: 'Chain of Evidence',
+    emoji: '⛓️',
+    accent: 'var(--world-3)',
+    description: 'Multi-step angle problems with reasons',
+    conceptFocus: 'multi-step-angle-chasing',
+    boss: { name: 'The Broken Chain', emoji: '⛓️', reward: 'Chain Badge' },
+  },
+  {
+    id: 4,
+    name: 'The Helper Line',
+    emoji: '➖',
+    accent: 'var(--world-4)',
+    description: 'Use a helper line to solve an angle problem',
+    conceptFocus: 'auxiliary-line-angles',
+    boss: { name: 'The Missing Line', emoji: '➖', reward: 'Helper Badge' },
+  },
+  {
+    id: 5,
+    name: 'Does It Follow?',
+    emoji: '🖍️',
+    accent: 'var(--world-5)',
+    description: 'Decide whether a conclusion follows from the marks',
+    conceptFocus: 'determined-or-not-determined',
+    boss: { name: 'The Sketchy Sketch Artist', emoji: '🖍️', reward: 'Sufficiency Badge' },
+  },
+  {
+    id: 6,
+    name: 'Order in the Court',
+    emoji: '📚',
+    accent: 'var(--world-6)',
+    description: 'Order and complete a reasoning chain',
+    conceptFocus: 'order-and-complete-reasoning',
+    boss: { name: 'The Scrambled Docket', emoji: '📚', reward: 'Order Badge' },
+  },
+  {
+    id: 7,
+    name: 'Converse and Counterexample',
+    emoji: '🔄',
+    accent: 'var(--world-7)',
+    description: 'Converses, and disproving a claim with a counterexample',
+    conceptFocus: 'converse-and-counterexample',
+    boss: { name: 'The Backwards Barrister', emoji: '🔄', reward: 'Counterexample Badge' },
+  },
+  {
+    id: 8,
+    name: 'Congruent Evidence',
+    emoji: '👯',
+    accent: 'var(--world-8)',
+    description: 'Congruence criteria and deductions',
+    conceptFocus: 'triangle-congruence-reasoning',
+    boss: { name: 'The Twin Impostors', emoji: '👯', reward: 'Congruence Badge' },
+  },
+  {
+    id: 9,
+    name: 'The Grand Mock Trial',
+    emoji: '⚖️',
+    accent: 'var(--world-9)',
+    description: 'Mixed review of every concept above',
+    conceptFocus: 'mixed-review',
+    boss: { name: 'The Chief Justice', emoji: '⚖️', reward: 'Grand Verdict Trophy' },
+  },
+];

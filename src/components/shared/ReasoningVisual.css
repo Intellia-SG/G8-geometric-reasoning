@@ -1,0 +1,154 @@
+/* src/components/shared/ReasoningVisual.css */
+
+.reasoning-visual-card {
+  background: rgba(26, 20, 68, 0.78);
+  border: 1px solid rgba(130, 110, 210, 0.25);
+  border-radius: var(--radius-md, 14px);
+  padding: 16px;
+  margin: 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(16px);
+}
+
+.reasoning-visual-card.compact {
+  padding: 8px 12px;
+  margin: 0;
+  gap: 6px;
+}
+
+.rv-badge-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.rv-evidence-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--gold, #ffb300);
+  background: rgba(255, 179, 0, 0.15);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill, 999px);
+  border: 1px solid rgba(255, 179, 0, 0.35);
+}
+
+.rv-scale-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.15);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.rv-pair-letter-badge {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.rv-pair-type-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.rv-svg-container,
+.rv-letter-shape-showcase {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rv-svg {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  display: block;
+}
+
+.rv-accessible-caption {
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: var(--color-text-muted, rgba(248, 250, 252, 0.7));
+  margin: 4px 0 0 0;
+  text-align: center;
+}
+
+.rv-chain-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.rv-chain-step-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm, 8px);
+  padding: 8px 12px;
+}
+
+.rv-step-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--gold, #ffb300);
+  color: #18181b;
+  font-weight: 800;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.rv-step-text {
+  font-size: 0.85rem;
+  color: #ffffff;
+}
+
+.rv-rulebook-content {
+  background: rgba(30, 25, 75, 0.7);
+  padding: 12px;
+  border-radius: var(--radius-sm, 8px);
+  border-left: 3px solid var(--gold, #ffb300);
+}
+
+.rv-rule-title {
+  margin: 0 0 6px 0;
+  font-size: 0.95rem;
+  color: #f8fafc;
+  text-transform: capitalize;
+}
+
+.rv-rule-condition {
+  margin: 0 0 6px 0;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+}
+
+.rv-rule-narration {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
