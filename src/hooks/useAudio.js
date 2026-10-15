@@ -1,21 +1,14 @@
 // src/hooks/useAudio.js
-// Audio Engine supporting static asset lookup, ElevenLabs dynamic fallback, and Web Audio SFX
+// Audio Engine adhering strictly to audio_generation_pipeline (5).md
+// - Static audioMap lookup
+// - Dynamic ElevenLabs generation (no browser TTS fallback)
+// - Eager preloading of upcoming segments for seamless playback
+// - Synthesized Web Audio SFX
 
 import { useRef, useCallback, useEffect } from 'react';
 import { audioMap } from '../utils/audioMap.js';
+import { VOICE_ID, VOICE_MODEL, VOICE_SETTINGS } from '../config/audio.config.js';
 
-const VOICE_SETTINGS = {
-  celebration:  { stability: 0.12, similarity_boost: 0.45, style: 0.75, use_speaker_boost: true },
-  encouragement:{ stability: 0.16, similarity_boost: 0.50, style: 0.65, use_speaker_boost: true },
-  question:     { stability: 0.20, similarity_boost: 0.55, style: 0.55, use_speaker_boost: true },
-  emphasis:     { stability: 0.16, similarity_boost: 0.50, style: 0.60, use_speaker_boost: true },
-  thinking:     { stability: 0.24, similarity_boost: 0.60, style: 0.35, use_speaker_boost: true },
-  statement:    { stability: 0.20, similarity_boost: 0.55, style: 0.50, use_speaker_boost: true },
-  instruction:  { stability: 0.20, similarity_boost: 0.55, style: 0.50, use_speaker_boost: true },
-};
-
-const VOICE_ID = 'Xb7hH8MSUJpSbSDYk0k2';
-const MODEL_ID = 'eleven_multilingual_v2';
 const blobCache = new Map();
 
 export function useAudio(audioEnabled = true) {
@@ -34,17 +27,34 @@ export function useAudio(audioEnabled = true) {
     narrateIdRef.current++;
     if (currentAudioRef.current) {
       currentAudioRef.current.pause();
+      currentAudioRef.current.currentTime = 0;
       currentAudioRef.current = null;
     }
     playingRef.current = false;
   }, []);
 
+  /**
+   * Fetch audio URL with priority:
+   * 1. Static asset from audioMap
+   * 2. In-memory blobCache
+   * 3. Dynamic generation via ElevenLabs API (if VITE_ELEVENLABS_API_KEY is defined)
+   * 4. Returns null (silent skip, no browser Web Speech API fallback)
+   */
   const getAudioUrl = useCallback(async (text, style = 'statement') => {
-    if (audioMap && audioMap[text]) return audioMap[text];
+    if (!text) return null;
 
+    // 1. Static audioMap match
+    if (audioMap && audioMap[text]) {
+      return audioMap[text];
+    }
+
+    // 2. Memory cache check
     const cacheKey = `${text}__${style}`;
-    if (blobCache.has(cacheKey)) return blobCache.get(cacheKey);
+    if (blobCache.has(cacheKey)) {
+      return blobCache.get(cacheKey);
+    }
 
+    // 3. Dynamic ElevenLabs generation
     const apiKey = import.meta.env.VITE_ELEVENLABS_API_KEY;
     if (!apiKey) return null;
 
@@ -58,51 +68,124 @@ export function useAudio(audioEnabled = true) {
         },
         body: JSON.stringify({
           text,
-          model_id: MODEL_ID,
+          model_id: VOICE_MODEL,
           voice_settings: settings,
         }),
       });
-      if (!res.ok) throw new Error(`ElevenLabs ${res.status}`);
+
+      if (!res.ok) {
+        return null;
+      }
+
       const blob = await res.blob();
       const url  = URL.createObjectURL(blob);
       blobCache.set(cacheKey, url);
       return url;
-    } catch (err) {
-      console.warn('[Audio Engine] ElevenLabs dynamic request skipped:', err.message);
+    } catch {
+      // Skip narration silently without crashing or robotic voices
       return null;
     }
   }, []);
 
-  const playSegment = useCallback(async (text, style, expectedId) => {
-    if (!audioEnabled || narrateIdRef.current !== expectedId) return;
-    const url = await getAudioUrl(text, style);
-    if (!url || narrateIdRef.current !== expectedId) return;
-
+  /**
+   * Play an audio URL with fallback to dynamic ElevenLabs fetch if static file 404s
+   */
+  const playUrlWithFallback = useCallback((url, text, style, expectedId) => {
     return new Promise((resolve) => {
+      if (!audioEnabled || narrateIdRef.current !== expectedId) {
+        resolve();
+        return;
+      }
+
       const audio = new Audio(url);
       currentAudioRef.current = audio;
-      audio.onended = () => { currentAudioRef.current = null; resolve(); };
-      audio.onerror = () => { currentAudioRef.current = null; resolve(); };
+
+      audio.onended = () => {
+        currentAudioRef.current = null;
+        resolve();
+      };
+
+      audio.onerror = async () => {
+        currentAudioRef.current = null;
+        // If static audio file was missing (e.g. 404), attempt dynamic ElevenLabs fetch
+        const apiKey = import.meta.env.VITE_ELEVENLABS_API_KEY;
+        if (apiKey && narrateIdRef.current === expectedId) {
+          try {
+            const settings = VOICE_SETTINGS[style] || VOICE_SETTINGS.statement;
+            const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`, {
+              method: 'POST',
+              headers: {
+                'xi-api-key': apiKey,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                text,
+                model_id: VOICE_MODEL,
+                voice_settings: settings,
+              }),
+            });
+            if (res.ok && narrateIdRef.current === expectedId) {
+              const blob = await res.blob();
+              const dynUrl = URL.createObjectURL(blob);
+              blobCache.set(`${text}__${style}`, dynUrl);
+              const dynAudio = new Audio(dynUrl);
+              currentAudioRef.current = dynAudio;
+              dynAudio.onended = () => { currentAudioRef.current = null; resolve(); };
+              dynAudio.onerror = () => { currentAudioRef.current = null; resolve(); };
+              dynAudio.play().catch(() => resolve());
+              return;
+            }
+          } catch {
+            // Silently resolve
+          }
+        }
+        resolve();
+      };
+
       audio.play().catch(() => resolve());
     });
-  }, [audioEnabled, getAudioUrl]);
+  }, [audioEnabled]);
 
+  /**
+   * Narrates an array of segments with eager preloading of upcoming segments
+   * to eliminate latency gaps between sentences.
+   */
   const narrate = useCallback(async (segments) => {
-    if (!segments || !segments.length) return;
+    if (!segments || !segments.length || !audioEnabled) return;
+
     stopAll();
     const currentId = ++narrateIdRef.current;
     playingRef.current = true;
 
-    for (const seg of segments) {
+    for (let i = 0; i < segments.length; i++) {
       if (narrateIdRef.current !== currentId) break;
-      await playSegment(seg.text, seg.style, currentId);
+
+      const currentSeg = segments[i];
+
+      // Eagerly preload the NEXT segment while this segment is preparing / playing
+      if (i + 1 < segments.length) {
+        const nextSeg = segments[i + 1];
+        getAudioUrl(nextSeg.text, nextSeg.style).catch(() => {});
+      }
+
+      const url = await getAudioUrl(currentSeg.text, currentSeg.style);
       if (narrateIdRef.current !== currentId) break;
-      await new Promise(r => setTimeout(r, 180));
+
+      if (url) {
+        await playUrlWithFallback(url, currentSeg.text, currentSeg.style, currentId);
+      } else {
+        // No audio available, small pause for text pacing
+        await new Promise((r) => setTimeout(r, 200));
+      }
+
+      if (narrateIdRef.current !== currentId) break;
+      await new Promise((r) => setTimeout(r, 120));
     }
+
     if (narrateIdRef.current === currentId) {
       playingRef.current = false;
     }
-  }, [stopAll, playSegment]);
+  }, [audioEnabled, stopAll, getAudioUrl, playUrlWithFallback]);
 
   // Tone-based sound synthesizer for instant zero-latency feedback
   const playTone = useCallback((frequencies, durations) => {
@@ -144,9 +227,9 @@ export function useAudio(audioEnabled = true) {
     say:       (text) => ({ text, style: 'statement' }),
     ask:       (text) => ({ text, style: 'question' }),
     cheer:     (text) => ({ text, style: 'celebration' }),
+    celebrate: (text) => ({ text, style: 'celebration' }),
     emphasize: (text) => ({ text, style: 'emphasis' }),
     think:     (text) => ({ text, style: 'thinking' }),
-    celebrate: (text) => ({ text, style: 'celebration' }),
     instruct:  (text) => ({ text, style: 'instruction' }),
     encourage: (text) => ({ text, style: 'encouragement' }),
   };

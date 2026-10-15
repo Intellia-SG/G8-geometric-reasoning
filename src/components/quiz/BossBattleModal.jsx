@@ -51,7 +51,7 @@ export default function BossBattleModal({ boss, questions, onWin, onClose, audio
           </div>
           <h2 className="boss-title">{boss.name}</h2>
           <p className="boss-desc">
-            Answer {questions.length} money questions correctly to defeat the boss!
+            Answer {questions.length} courtroom questions correctly to defeat the boss!
           </p>
           <div className="boss-lives-preview">
             Lives: {'❤️'.repeat(3)}
@@ -100,7 +100,7 @@ export default function BossBattleModal({ boss, questions, onWin, onClose, audio
           </div>
           <h2 className="boss-title" style={{ color: 'var(--red-light)' }}>Out of Lives!</h2>
           <p className="boss-desc">
-            {boss.name} was too tricky! Review the coin rules and challenge the boss again.
+            {boss.name} was too tricky! Review the geometry rulebook and challenge the boss again.
           </p>
           <button className="btn btn-primary" onClick={onClose}>
             Return to Practice

@@ -14,21 +14,20 @@ export default function QuestionRenderer({
   onNext,
   canPrev,
 }) {
-  if (!question) return null;
-
-  const { category, questionText, options, visual, visualData, hint1, hint2, correctAnswer } = question;
-  const categoryTag = category || 'GEOMETRIC REASONING';
-
-  // State for interactive Step Ordering (World 6: Order in the Court)
-  const isOrderingQuestion = categoryTag.includes('ORDER') && visualData?.steps;
   const [orderedSteps, setOrderedSteps] = useState([]);
 
+  const categoryTag = question?.category || 'GEOMETRIC REASONING';
+  const isOrderingQuestion = categoryTag.includes('ORDER') && question?.visualData?.steps;
+
   useEffect(() => {
-    if (isOrderingQuestion && visualData?.steps) {
-      // Initialize with copy of steps
-      setOrderedSteps([...visualData.steps]);
+    if (isOrderingQuestion && question?.visualData?.steps) {
+      setOrderedSteps([...question.visualData.steps]);
     }
-  }, [question?.id, isOrderingQuestion, visualData?.steps]);
+  }, [question?.id, isOrderingQuestion, question?.visualData?.steps]);
+
+  if (!question) return null;
+
+  const { questionText, options, visual, visualData, hint1, hint2 } = question;
 
   function moveStep(idx, direction) {
     if (isLocked) return;

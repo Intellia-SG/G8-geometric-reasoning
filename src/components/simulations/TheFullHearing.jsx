@@ -149,7 +149,7 @@ export default function TheFullHearing({ onComplete }) {
           <span className="station-icon">⚖️</span> Station C: The Full Hearing
         </h3>
         <p className="station-desc">
-          Given AB ∥ CD, ∠ABE = 40°, ∠ECD = 30°. Mark the diagram, add a helper line, put the docket steps in order, and assign the correct reason to each!
+          Review the given marks, add a helper line if needed, put the scrambled docket steps into logical order, and assign the correct reason to each!
         </p>
       </div>
 

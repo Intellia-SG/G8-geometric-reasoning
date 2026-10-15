@@ -1,13 +1,13 @@
 // src/components/FloatingSymbols.jsx
 import React, { useMemo } from 'react';
 
-const MONEY_SYMBOLS = ['🪙', '💰', '💵', '🏦', '💳', '🐷', '🏷️', '✨', '💲', '🛒'];
+const GEOMETRY_SYMBOLS = ['⚖️', '📐', '📜', '🏛️', '🦉', '🔨', '✨', '💡', '🔍', '⭐', '📏', '🔺'];
 
 export default function FloatingSymbols({ count = 16 }) {
   const items = useMemo(
     () =>
       Array.from({ length: count }, (_, i) => {
-        const symbol = MONEY_SYMBOLS[i % MONEY_SYMBOLS.length];
+        const symbol = GEOMETRY_SYMBOLS[i % GEOMETRY_SYMBOLS.length];
         return {
           symbol,
           left: Math.random() * 100,

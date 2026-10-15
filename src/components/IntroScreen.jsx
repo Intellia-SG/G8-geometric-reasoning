@@ -1,8 +1,10 @@
 // src/components/IntroScreen.jsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import './IntroScreen.css';
 import { generateSessionQuestions } from '../utils/shuffle.js';
 import questionBank from '../data/questionBank.js';
+import { useAudio } from '../hooks/useAudio.js';
+import { introNarration } from '../utils/narration.js';
 
 const JOURNEY = [
   { num: '01', icon: '🔍', label: 'Wonder',   desc: 'The Courtroom Hook' },
@@ -14,13 +16,26 @@ const JOURNEY = [
 
 export default function IntroScreen({ state, dispatch }) {
   const hasSaved = state?.phaseComplete && Object.values(state.phaseComplete).some(Boolean);
+  const { narrate, stopAll } = useAudio(state?.audioEnabled ?? true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      narrate(introNarration());
+    }, 400);
+    return () => {
+      clearTimeout(timer);
+      stopAll();
+    };
+  }, [narrate, stopAll]);
 
   function startFresh() {
+    stopAll();
     dispatch({ type: 'LOAD_QUESTIONS', payload: generateSessionQuestions(questionBank) });
     dispatch({ type: 'SET_PHASE', payload: 'wonder' });
   }
 
   function resumeSession() {
+    stopAll();
     dispatch({ type: 'SET_PHASE', payload: state.savedPhase || 'wonder' });
   }
 
@@ -43,7 +58,7 @@ export default function IntroScreen({ state, dispatch }) {
       <div className="intro-mascot-row">
         <div className="intro-mascot-circle" title="Judge Tally the Owl">🦉</div>
         <div className="intro-speech-bubble">
-          <strong>Welcome to the Geometry Court! I'm Judge Tally.</strong> Remember: <em>"No reason, no ruling!"</em> Justify every step with closed rulebook reasons, verify conditions before concluding, use helper lines, and disprove false claims with counterexamples! ⚖️📐
+          <strong>Welcome to the Geometry Court! I am Judge Tally.</strong> Remember: <em>"No reason, no ruling!"</em> Justify every step with closed rulebook reasons, verify conditions before concluding, use helper lines, and disprove false claims with counterexamples! ⚖️📐
         </div>
       </div>
 

@@ -61,16 +61,16 @@ export default function WonderPhase({ state, dispatch }) {
             <div className="wonder-left-col">
               <div className="wonder-question-card">
                 <p className="body-text wonder-q">
-                  Two sketches show the exact same case. In one sketch, two lines are <strong className="wonder-em">marked parallel (∥)</strong>. In the other, they look parallel but are slightly off without marks.
+                  Two sketches show the exact same case. In one sketch, two lines are <strong className="wonder-em">marked parallel</strong>. In the other, they look parallel but are slightly off without marks.
                 </p>
                 <p className="body-text wonder-q">
-                  The advocate claims: <strong className="wonder-em">"These two angles are equal!"</strong> <span className="wonder-highlight">When is a judge legally allowed to accept it?</span>
+                  The advocate claims: <strong className="wonder-em">these two angles are equal!</strong> <span className="wonder-highlight">When is a judge legally allowed to accept it?</span>
                 </p>
               </div>
 
               {/* Mascot */}
               <div className="wonder-mascot-row">
-                <Mascot mood="curious" message="Remember: in geometry court, no reason means no ruling! Let's discover the rulebook!" size="sm" />
+                <Mascot mood="curious" message="Remember: in geometry court, no reason means no ruling! Let us discover the rulebook!" size="sm" />
               </div>
             </div>
 

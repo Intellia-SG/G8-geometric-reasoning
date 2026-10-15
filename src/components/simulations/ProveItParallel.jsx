@@ -66,7 +66,7 @@ export default function ProveItParallel({ onComplete }) {
           <span className="station-icon">🎯</span> Station B: Prove It Parallel
         </h3>
         <p className="station-desc">
-          The court claim is: <strong>AB is parallel to CD</strong>. Adjust the marked angle until the evidence satisfies a converse rule from the rulebook!
+          A claim is on the table: line A B is parallel to line C D. Adjust the angle stepper until the evidence satisfies a converse rule to establish parallel lines!
         </p>
       </div>
 
