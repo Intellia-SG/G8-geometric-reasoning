@@ -41,12 +41,19 @@
 .phase-content.phase-wonder,
 .phase-content.phase-story,
 .phase-content.phase-simulate,
-.phase-content.phase-play,
-.phase-content.phase-reflect {
+.phase-content.phase-play {
   height: calc(100dvh - 58px);
   max-height: calc(100dvh - 58px);
   padding-bottom: 0;
   overflow: hidden;
+}
+
+.phase-content.phase-reflect {
+  height: calc(100dvh - 58px);
+  max-height: calc(100dvh - 58px);
+  padding-bottom: 24px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* ─── Header & Navigation ────────────────────────────────────────────────── */
